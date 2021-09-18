@@ -1,80 +1,236 @@
+var startButton = document.querySelector("#start");
+var timerElement = document.querySelector(".timer");
+var scoreCounter = document.querySelector(".score-counter");
+var questionElement = document.querySelector("#question-box");
+var a = document.querySelector("#a");
+var b = document.querySelector("#b");
+var c = document.querySelector("#c");
+var d = document.querySelector("#d");
+var celebrate = document.querySelector(".celebrate");
+var submitAnswer = document.querySelector("#submit-btn");
+
+
+var seconds = 100; 
+var score = 0;
+
 
 var questions = [
-    {   question : "Which element is used to create a heading?",
-        answer1 : "<h1>",
-        answer2 : "<p>",
-        answer3 : "<img>",
-        answer4 : "<div>"
-    },
+    {   name: "q1",
+        question : "Which element is used to create a heading?",
+        answers: [
+            {value: "<h1>",correct: true},
+            {value: "<p>",correct: false},
+            {value: "<img>",correct: false},
+            {value: "<div>",correct: false},
+        ]
+
+    }, 
     {
+        name: "q2",
         question : "Which one of these is not an ID",
-        answer1 : "#element",
-        answer2 : "#left",
-        answer3 : ".right",
-        answer4 : "#top",
+        answers: [
+            {value: "#element",correct: false},
+            {value: "#left", correct: false},
+            {value: ".right", correct: true},
+            {value: "#top", correct: true},
+        ]
     },
+ 
     {
+        name: "q3",
         question : "Media query does what?",
-        answer1 : "Gives you information about latest technology",
-        answer2 : "A CSS technique which allows different presentations",
-        answer3 : "A Java script command",
-        answer4 : "Is an element in html",
+        answers: [
+            {value:"Gives you information about latest technology", correct: false},
+            {value:"A CSS technique which allows different presentations", correct:true},
+            {value:"A Java script command", correct: false},
+            {value:"Is an element in html", correct: false},
+        ]
     },
+     
     {
+        name: "q4",
         question : "When a user enters their information in a form and it is stored on their local, where is it stored?",
-        answer1 : "Local storage",
-        answer2 : "In the database",
-        answer3 : "On the cookies",
-        answer4 : "In the HTML",
+        answers: [
+            {value:"Local storage", correct: true},
+            {value:"In the database",correct: false},
+            {value:"On the cookies",correct: false},
+            {value:"In the HTML",correct: false},
+        ]
     },
+  
     {
+        name: "q5",
         question : "What is the command to convert object to a string?", 
-        answer1 : "JSON.parse",
-        answer2 : "localStorage.setItem",
-        answer3 : "JSON.stringify",
-        answer4 : "addEventListener",
+        answers: [
+            {value:"JSON.parse",correct: false},
+            {value:"localStorage.setItem",correct: false},
+            {value:"JSON.stringify",correct: true},
+            {value:"addEventListener",correct: false},
+        ]
     },
+
     {
+        name: "q6",
         question : "What is the terminal command to copy a repo from git to your local?",
-        answer1 : "cd",
-        answer2 : "init",
-        answer3 : "clone",
-        answer4 : "touch",
+        answers: [
+            {value:"cd",correct: false},
+            {value:"init",correct: false},
+            {value:"clone",correct: true},
+            {value:"touch",correct: false},
+        ]
     },
+   
     {
+        name: "q7",
         question : "What is a Boolean",
-        answer1 : "a number value",
-        answer2 : "a string value",
-        answer3 : "a decimal value",
-        answer4 : "a true or false value",
+        answers: [
+            {value:"a number value",correct: false},
+            {value:"a string value",correct: false},
+            {value:"a decimal value",correct: false},
+            {value:"a true or false value",correct: true},
+        ]
     },
+
     {
+        name: "q8",
         question : "What is this operator ||",
-        answer1 : "or",
-        answer2 : "and",
-        answer3 : "add",
-        answer4 : "sum",
+        answers: [
+            {value: "or",correct: true},
+            {value: "and",correct: false},
+            {value: "add",correct: false},
+            {value:"sum",correct: false},
+        ]
     },
     {
+        name: "q9",
         question : "(2,4,6,8,10,12,14,16,18,20) What is the index value of 10",
-        answer1 : "5",
-        answer2 : "6",
-        answer3 : "10",
-        answer4 : "4",
+        answers: [
+            {value: "5",correct: false},
+            {value: "6",correct: false},
+            {value: "10",correct: false},
+            {value: "4",correct: true},
+        ]
     },
     {
+        name: "q10",
         question : "What is an array?",
-        answer1 : "A line of code that points to a link",
-        answer2 : "A css style to create a table",
-        answer3 : "A command to start a script",
-        answer4 : "A collection of the same data type",
-    },
-
+        answers: [
+            {value:"A line of code that points to a link",correct: false},
+            {value:"A css style to create a table",correct: false},
+            {value:"A command to start a script",correct: false},
+            {value:"A collection of the any data type",correct: true},
+        ]
+    }
     
-
-
-
-
-
-
 ]
+
+// Attach event listener to start button to call startGame function on click
+startButton.addEventListener('click', startGame);
+
+
+
+// The startGame function is called when the start button is clicked
+function startGame() {
+    startTimer();
+    renderQuestion();
+  }
+
+// this function is used to init the time with the seconds we allocate for the game
+var timer;
+function startTimer() {
+    timer = setInterval(function(){
+        if(seconds === 0){
+            clearInterval(timer)
+        } else {
+            // TODO: update the current time on the screen
+            
+        }
+    },1000)
+}
+
+
+function incorrectAnswer() {
+    seconds -= 10;
+    if(seconds <= 0) {
+        clearInterval(timer)
+           }
+}
+
+function gameCompeted() {
+    clearInterval(timer)
+    // TODO: display input scores form
+}
+
+var currentQuestionIndex = 0;
+function renderQuestion() {
+    var currentQuestion = questions[currentQuestionIndex]
+    var questionSection = document.querySelector(".question");
+    questionSection.innerHTML = "";
+
+    if( currentQuestion !== undefined) {
+        var questionHeading = document.createElement("h1")
+        questionHeading.textContent = currentQuestion.name + " " + currentQuestion.question;
+        questionSection.appendChild(questionHeading);
+
+        var buttonContainer = document.createElement("div");
+        buttonContainer.className = "question-box";
+        for(var i = 0; i < currentQuestion.answers.length; i++) {
+            var button = document.createElement("button")
+            button.className = "button";
+            button.value = currentQuestion.answers[i].value;
+            button.dataset.correct = currentQuestion.answers[i].correct ;
+            button.textContent = currentQuestion.answers[i].value;
+           // button.addEventListener("click", this.submitAnswer);
+            button.addEventListener("click", function(event) {
+                checkAnswer(event.currentTarget.dataset.correct)
+                event.preventDefault();
+            });
+            buttonContainer.appendChild(button);
+
+        }
+        questionSection.appendChild(buttonContainer);
+
+
+    } else {
+        gameCompleted()
+    }
+}
+
+function checkAnswer(selectedAnswer){
+    var celebrationElement = document.querySelector(".celebrate");
+    if (selectedAnswer === "true") {
+        currentQuestionIndex++;
+        renderQuestion();
+        celebrationElement.innerHTML = "Correct!";
+    } else {
+        celebrationElement.innerHTML = "Incorrect!";
+    }
+}
+
+
+/*
+
+//function start timer//
+function startTimer() {
+  // Sets interval in variable
+  var startTimer = setInterval(function() {
+    (seconds--;
+    timerElement.textContent = secondsLeft;
+    document.getElementById("timer").innerHTML = timeleft + " seconds remaining";
+    if(seconds === 0) {
+      // Stops execution of action at set interval
+      clearInterval(startTimer);
+      timerElement.textContent = "Game Over"
+      document.getElementById("timer").innerHTML = "Game Over";
+    }
+
+  }, 1000);
+} 
+*/
+
+
+
+/* when the answer is submitted i want to show the correct/incorrect answer, i want
+the score to increment and i want the next question to be displayed*/
+
+/*function gameCompleted()*/

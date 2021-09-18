@@ -10,7 +10,6 @@
 }
 
 .button-container {
-
     height: 100px;
     display: flex;
     justify-content: space-evenly;
@@ -61,6 +60,8 @@
 
 .question-box {
     text-align: center;
+    display: flex;
+    flex-direction: column;
     height: 100px;
     border: 8px solid black;
     border-radius: 12px;
@@ -73,67 +74,34 @@
      
 }
 
-.question {
-    vertical-align: middle;
-    padding: 20;
-
-}
-
-.answer1 {
-    text-align: center;
-    height: 30px;
-    border: 3px solid black;
-    border-radius: 12px;
-    padding: 2px;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-
-}
-
-
-.answer2 {
-    text-align: center;
-    align-items: center;
-    height: 30px;
-    border:3px solid black;
-    border-radius: 12px;
-    padding: 2px;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-
-
-.answer3 {
-    text-align: center;
-    align-items: center;
-    height: 30px;
-    border: 3px solid black;
-    border-radius: 12px;
-    padding: 3px;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-
-
-.answer4 {
-    text-align: center;
-    align-items: center;
-    height: 30px;
-    border: 3px solid black;
-    border-radius: 12px;
-    padding: 2px;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
 .answer {
+    justify-content: center;
+    text-align: center;
+    height: 250px;
+    border: 8px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: xx-large;
+    margin-bottom: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.submit {
+    justify-content: center;
+    height: 90px;
+    width: 150px;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+    background-color:black;
+    font-size: 2em;
+}
+
+
+.celebrate {
     margin: 5px;
     font-size: 40px;
     font-weight: 500px;
