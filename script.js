@@ -15,7 +15,7 @@ var score = 0;
 
 
 var questions = [
-    {   name: "q1",
+    {   name: "Q1.",
         question : "Which element is used to create a heading?",
         answers: [
             {value: "<h1>",correct: true},
@@ -26,7 +26,7 @@ var questions = [
 
     }, 
     {
-        name: "q2",
+        name: "Q2.",
         question : "Which one of these is not an ID",
         answers: [
             {value: "#element",correct: false},
@@ -37,7 +37,7 @@ var questions = [
     },
  
     {
-        name: "q3",
+        name: "Q3.",
         question : "Media query does what?",
         answers: [
             {value:"Gives you information about latest technology", correct: false},
@@ -48,7 +48,7 @@ var questions = [
     },
      
     {
-        name: "q4",
+        name: "Q4.",
         question : "When a user enters their information in a form and it is stored on their local, where is it stored?",
         answers: [
             {value:"Local storage", correct: true},
@@ -59,7 +59,7 @@ var questions = [
     },
   
     {
-        name: "q5",
+        name: "Q5.",
         question : "What is the command to convert object to a string?", 
         answers: [
             {value:"JSON.parse",correct: false},
@@ -70,7 +70,7 @@ var questions = [
     },
 
     {
-        name: "q6",
+        name: "Q6.",
         question : "What is the terminal command to copy a repo from git to your local?",
         answers: [
             {value:"cd",correct: false},
@@ -81,7 +81,7 @@ var questions = [
     },
    
     {
-        name: "q7",
+        name: "Q7.",
         question : "What is a Boolean",
         answers: [
             {value:"a number value",correct: false},
@@ -92,7 +92,7 @@ var questions = [
     },
 
     {
-        name: "q8",
+        name: "Q8.",
         question : "What is this operator ||",
         answers: [
             {value: "or",correct: true},
@@ -102,7 +102,7 @@ var questions = [
         ]
     },
     {
-        name: "q9",
+        name: "Q9.",
         question : "(2,4,6,8,10,12,14,16,18,20) What is the index value of 10",
         answers: [
             {value: "5",correct: false},
@@ -112,7 +112,7 @@ var questions = [
         ]
     },
     {
-        name: "q10",
+        name: "Q10.",
         question : "What is an array?",
         answers: [
             {value:"A line of code that points to a link",correct: false},
@@ -128,7 +128,6 @@ var questions = [
 startButton.addEventListener('click', startGame);
 
 
-
 // The startGame function is called when the start button is clicked
 function startGame() {
     startTimer();
@@ -136,14 +135,17 @@ function startGame() {
   }
 
 // this function is used to init the time with the seconds we allocate for the game
-var timer;
+var timer = 100;
 function startTimer() {
     timer = setInterval(function(){
+        timer--;
         if(seconds === 0){
             clearInterval(timer)
         } else {
             // TODO: update the current time on the screen
-            
+            var timerSection = document.querySelector(".timer");
+            /*timerElement.textContent = timer + "seconds";*/
+            timerSection.innerHTML = timer + "seconds";
         }
     },1000)
 }
@@ -165,7 +167,8 @@ var currentQuestionIndex = 0;
 function renderQuestion() {
     var currentQuestion = questions[currentQuestionIndex]
     var questionSection = document.querySelector(".question");
-    questionSection.innerHTML = "";
+     questionSection.innerHTML = "";
+    
 
     if( currentQuestion !== undefined) {
         var questionHeading = document.createElement("h1")
