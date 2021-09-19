@@ -2,16 +2,7 @@ var startButton = document.querySelector("#start");
 var timerElement = document.querySelector(".timer");
 var scoreCounter = document.querySelector(".score-counter");
 var questionElement = document.querySelector("#question-box");
-var a = document.querySelector("#a");
-var b = document.querySelector("#b");
-var c = document.querySelector("#c");
-var d = document.querySelector("#d");
 var celebrate = document.querySelector(".celebrate");
-var submitAnswer = document.querySelector("#submit-btn");
-
-
-var seconds = 100; 
-var score = 0;
 
 
 var questions = [
@@ -136,70 +127,50 @@ function startGame() {
 
 // this function is used to init the time with the seconds we allocate for the game
 
-
 function formatTimeLeft(time) {
-    // The largest round integer less than or equal to the result of time divided being by 60.
     const minutes = Math.floor(time / 60);
-    
-    // Seconds are the remainder of the time divided by 60 (modulus operator)
     let seconds = time % 60;
     
-   
-    // The output in MM:SS format
     var timerSection = document.querySelector(".timer");
     timerSection.innerHTML = `${minutes}:${seconds}`; ;
   }
-  const TIME_LIMIT = 5;
+
+  const TIME_LIMIT = 50;
   let timePassed = 0;
   let timeLeft = TIME_LIMIT;
-
   let timerInterval = null;
 
 
 function startTimer() {
-  timerInterval = setInterval(() => {
+    timerInterval = setInterval(() => {
     
     // The amount of time passed increments by one
     timePassed = timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
-    debugger
-    if(timerInterval === 0){
-        clearInterval(timerInterval)
-
-    }
-  
-    // The time left label is updated
     var timerSection = document.querySelector(".timer");
     timerSection.innerHTML = timeLeft;
-  }, 1000);
+    if(timeLeft === 0){
+    clearInterval(timerInterval);
+
+    };
+      
+  },1000);
 }
 
-/*function startTimer() {
-    timer = setInterval(function(){
-        timer--;
-        if(timer === 0){
-            clearInterval(timer)
-        } else {
-            // TODO: update the current time on the screen
-            var timerSection = document.querySelector(".timer");
-            timerSection.innerHTML = timer + "seconds";
-        }
-    },1000)
-}*/
-
+//if answer incorrect subtract 3 seconds
 function incorrectAnswer() {
-    timerInterval -= 3;
-    if(timerInterval <= 0) {
-        clearInterval(timer)
-           }
+    timerInterval-=3
 }
 
-function gameCompeted() {
-    clearInterval(timer)
-    // TODO: display input scores form
-    var userName = confirm("The game is finished.. enter you  name below")
+//If the game is completed
+function gameCompleted() {
+    var name = []
+    var name = prompt ("Game Over, Please enter your name");
+    alert("Well done " + name +", play again soon!");
+    clearInterval(timerInterval);
 }
 
+//Render the questiins and show the answers
 var currentQuestionIndex = 0;
 function renderQuestion() {
     var currentQuestion = questions[currentQuestionIndex]
@@ -236,16 +207,16 @@ function renderQuestion() {
     }
 }
 
+//Check the submitted answer
 function checkAnswer(selectedAnswer){
     var celebrationElement = document.querySelector(".celebrate");
     if (selectedAnswer === "true") {
         currentQuestionIndex++;
         renderQuestion();
         celebrationElement.innerHTML = "Correct!";
-    } else {
-        celebrationElement.innerHTML = "Incorrect!";
+    } else 
+        {celebrationElement.innerHTML = "Incorrect!";
         incorrectAnswer();
-    }
+        }
+    
 }
-
-
