@@ -13,6 +13,7 @@
 .button-container {
     height: 100px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     text-align: center;
     border: 8px solid black;
@@ -54,6 +55,7 @@
 .question-box {
     text-align: center;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     height: 100px;
     border: 8px solid black;
@@ -69,6 +71,7 @@
 }
 
 h1 {
+    flex-wrap: wrap;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 150px;
@@ -122,16 +125,12 @@ h1 {
 
 }
 
-/*https://getbootstrap.com/docs/4.1/layout/overview*/
-@include media-breakpoint-down(xs) { ... }
-@include media-breakpoint-down(sm) { ... }
-@include media-breakpoint-down(md) { ... }
-@include media-breakpoint-down(lg) { ... }
-// No media query necessary for xl breakpoint as it has no upper bound on its width
-
-// Example: Style from medium breakpoint and down
-@include media-breakpoint-down(md) {
-  .custom-class {
-    display: block;
-  }
-}
+/* When using `max-width` as the breakpoint, you must go from widest to narrowest to avoid conflict*/
+/* Tablets - header changes color */
+@media screen and (max-width: 992px) 
+  
+  /* Large smartphones */
+  @media screen and (max-width: 768px) 
+  
+  /* Small smartphones */
+  @media screen and (max-width: 576px) 
