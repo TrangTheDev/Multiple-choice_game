@@ -15,4 +15,7 @@ This is an image i used to use as a guide to build my game
 
 This is an image of the end final game
 
-![FinalGame](Final-game.png)
+![FinalGame](Final-game.PNG)
+
+
+The deployed URL: https://trangthedev.github.io/Multiple-choice_game/
