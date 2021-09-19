@@ -4,8 +4,8 @@
     border: 8px solid black;
     border-radius: 12px;
     padding: 10px;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: rgb(247, 102, 247);
 }
@@ -18,8 +18,8 @@
     border: 8px solid black;
     border-radius: 12px;
     padding: 10px;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: pink;
@@ -59,8 +59,8 @@
     border: 8px solid black;
     border-radius: 12px;
     padding: 10px;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
     font-size: large;
     margin-bottom: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -71,8 +71,8 @@
 h1 {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
     margin-bottom: 20px;
     margin-top: 20px;
     padding: 10px;
@@ -89,8 +89,8 @@ h1 {
     border: 8px solid black;
     border-radius: 12px;
     padding: 10px;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
     margin-bottom: 100px;
     font-size: large;
     margin-bottom: 20px;
@@ -120,4 +120,18 @@ h1 {
     align-items: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
+}
+
+/*https://getbootstrap.com/docs/4.1/layout/overview*/
+@include media-breakpoint-down(xs) { ... }
+@include media-breakpoint-down(sm) { ... }
+@include media-breakpoint-down(md) { ... }
+@include media-breakpoint-down(lg) { ... }
+// No media query necessary for xl breakpoint as it has no upper bound on its width
+
+// Example: Style from medium breakpoint and down
+@include media-breakpoint-down(md) {
+  .custom-class {
+    display: block;
+  }
 }
