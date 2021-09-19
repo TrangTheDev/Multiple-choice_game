@@ -32,7 +32,7 @@ var questions = [
             {value: "#element",correct: false},
             {value: "#left", correct: false},
             {value: ".right", correct: true},
-            {value: "#top", correct: true},
+            {value: "#top", correct: false},
         ]
     },
  
@@ -135,25 +135,61 @@ function startGame() {
   }
 
 // this function is used to init the time with the seconds we allocate for the game
-var timer = 100;
+
+
+function formatTimeLeft(time) {
+    // The largest round integer less than or equal to the result of time divided being by 60.
+    const minutes = Math.floor(time / 60);
+    
+    // Seconds are the remainder of the time divided by 60 (modulus operator)
+    let seconds = time % 60;
+    
+   
+    // The output in MM:SS format
+    var timerSection = document.querySelector(".timer");
+    timerSection.innerHTML = `${minutes}:${seconds}`; ;
+  }
+  const TIME_LIMIT = 5;
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+
+  let timerInterval = null;
+
+
 function startTimer() {
+  timerInterval = setInterval(() => {
+    
+    // The amount of time passed increments by one
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    debugger
+    if(timerInterval === 0){
+        clearInterval(timerInterval)
+
+    }
+  
+    // The time left label is updated
+    var timerSection = document.querySelector(".timer");
+    timerSection.innerHTML = timeLeft;
+  }, 1000);
+}
+
+/*function startTimer() {
     timer = setInterval(function(){
         timer--;
-        if(seconds === 0){
+        if(timer === 0){
             clearInterval(timer)
         } else {
             // TODO: update the current time on the screen
             var timerSection = document.querySelector(".timer");
-            /*timerElement.textContent = timer + "seconds";*/
             timerSection.innerHTML = timer + "seconds";
         }
     },1000)
-}
-
+}*/
 
 function incorrectAnswer() {
-    seconds -= 10;
-    if(seconds <= 0) {
+    timerInterval -= 3;
+    if(timerInterval <= 0) {
         clearInterval(timer)
            }
 }
@@ -161,6 +197,7 @@ function incorrectAnswer() {
 function gameCompeted() {
     clearInterval(timer)
     // TODO: display input scores form
+    var userName = confirm("The game is finished.. enter you  name below")
 }
 
 var currentQuestionIndex = 0;
@@ -207,33 +244,8 @@ function checkAnswer(selectedAnswer){
         celebrationElement.innerHTML = "Correct!";
     } else {
         celebrationElement.innerHTML = "Incorrect!";
+        incorrectAnswer();
     }
 }
 
 
-/*
-
-//function start timer//
-function startTimer() {
-  // Sets interval in variable
-  var startTimer = setInterval(function() {
-    (seconds--;
-    timerElement.textContent = secondsLeft;
-    document.getElementById("timer").innerHTML = timeleft + " seconds remaining";
-    if(seconds === 0) {
-      // Stops execution of action at set interval
-      clearInterval(startTimer);
-      timerElement.textContent = "Game Over"
-      document.getElementById("timer").innerHTML = "Game Over";
-    }
-
-  }, 1000);
-} 
-*/
-
-
-
-/* when the answer is submitted i want to show the correct/incorrect answer, i want
-the score to increment and i want the next question to be displayed*/
-
-/*function gameCompleted()*/
