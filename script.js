@@ -135,13 +135,13 @@ function formatTimeLeft(time) {
     timerSection.innerHTML = `${minutes}:${seconds}`; ;
   }
 
-  const TIME_LIMIT = 50;
-  let timePassed = 0;
-  let timeLeft = TIME_LIMIT;
-  let timerInterval = null;
+    const TIME_LIMIT = 50;
+    let timePassed = 0;
+    let timeLeft = TIME_LIMIT;
+    let timerInterval = null;
 
 
-function startTimer() {
+    function startTimer() {
     timerInterval = setInterval(() => {
     
     // The amount of time passed increments by one
